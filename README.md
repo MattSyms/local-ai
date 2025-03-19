@@ -1,6 +1,22 @@
 # AI
 
-- [Hugging Face](https://huggingface.co)
-- [Ollama](https://www.ollama.com)
-- [OpenWebUI](https://openwebui.com)
-- [Continue](https://www.continue.dev)
+| Stack  | Service    | Docker URL        | Local URL                                 |
+| ------ | ---------- | ----------------- | ----------------------------------------- |
+| ollama | Ollama     | `ollama:11434`    | [localhost:11434](http://localhost:11434) |
+| ollama | Open WebUI | `open-webui:8080` | [localhost:8080](http://localhost:8080)   |
+
+## Ollama
+
+Get a shell from the Ollama container:
+
+```
+docker compose exec ollama bash
+```
+
+Ollama commands:
+
+```
+ollama list
+ollama pull <model>
+ollama rm <model>
+```
