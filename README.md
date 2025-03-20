@@ -7,6 +7,13 @@
 
 ## Ollama
 
+Deploy stack
+
+```
+cd ollama
+docker compose up -d
+```
+
 Get a shell from the Ollama container:
 
 ```

@@ -1,0 +1,12 @@
+services:
+  stable-diffusion-webui:
+    build:
+      context: ./stable-diffusion-webui
+    ports:
+      - ${STABLE_DIFFUSION_WEBUI_PORT-7860}:7860
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+              driver: nvidia
