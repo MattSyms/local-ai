@@ -1,8 +1,5 @@
 FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
-# set shell
-SHELL ["/bin/bash", "-c"]
-
 # install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -34,7 +31,7 @@ USER ubuntu
 # set workdir
 WORKDIR /home/ubuntu
 
-# install cuda
+# add cuda to path
 ENV PATH="/usr/local/cuda/bin:$PATH"
 
 # install webui
@@ -46,4 +43,10 @@ RUN wget -q https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-web
         --no-download-sd-model
 
 # set cmd
-CMD ["bash", "./webui.sh", "--listen", "--xformers"]
+CMD [ \
+    "./webui.sh", \
+        "--listen", \
+        "--data", "./data", \
+        "--no-download-sd-model", \
+        "--xformers" \
+]

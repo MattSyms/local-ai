@@ -1,9 +1,11 @@
 services:
-  stable-diffusion-webui:
+  webui:
     build:
-      context: ./stable-diffusion-webui
+      context: ./webui
     ports:
-      - ${STABLE_DIFFUSION_WEBUI_PORT-7860}:7860
+      - ${WEBUI_PORT-7860}:7860
+    volumes:
+      - ./webui/data:/home/ubuntu/stable-diffusion-webui/data
     deploy:
       resources:
         reservations:
