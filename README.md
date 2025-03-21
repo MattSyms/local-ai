@@ -18,7 +18,7 @@ Container Toolkit: https://docs.nvidia.com/datacenter/cloud-native/container-too
 
 Models: https://ollama.com/search
 
-Deploy stack
+Deploy stack:
 
 ```
 cd ollama
@@ -48,7 +48,7 @@ Models:
 - https://huggingface.co/stabilityai/stable-diffusion-3-medium
 - https://huggingface.co/stabilityai/stable-diffusion-3.5-large
 
-Deploy stack
+Deploy stack:
 
 ```
 cd stable-diffusion
