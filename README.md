@@ -45,8 +45,6 @@ Models:
 
 - https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0
 - https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0
-- https://huggingface.co/stabilityai/stable-diffusion-3-medium
-- https://huggingface.co/stabilityai/stable-diffusion-3.5-large
 
 Deploy stack:
 
