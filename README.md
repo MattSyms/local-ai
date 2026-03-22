@@ -1,4 +1,4 @@
-# AI
+# Local AI Docker Stacks
 
 ## NVIDIA
 
