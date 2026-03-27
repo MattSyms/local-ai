@@ -1,6 +1,5 @@
 FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
-# install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update -y && \
@@ -21,20 +20,15 @@ RUN apt update -y && \
 
 ENV python_cmd="python3.11"
 
-# create user
 RUN groupadd -g 1000 ubuntu && \
     useradd -u 1000 -g 1000 -m -s /bin/bash ubuntu
 
-# set user
 USER ubuntu
 
-# set workdir
 WORKDIR /home/ubuntu
 
-# add cuda to path
 ENV PATH="/usr/local/cuda/bin:$PATH"
 
-# install webui
 RUN wget -q https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-webui/master/webui.sh && \
     chmod +x webui.sh && \
     ./webui.sh \
@@ -42,7 +36,6 @@ RUN wget -q https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-web
         --skip-torch-cuda-test \
         --no-download-sd-model
 
-# set cmd
 CMD [ \
     "./webui.sh", \
         "--listen", \
