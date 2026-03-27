@@ -10,3 +10,4 @@ Container Toolkit: https://docs.nvidia.com/datacenter/cloud-native/container-too
 
 - [Ollama](./ollama)
 - [Stable Diffusion](./stable-diffusion)
+- [Weaviate](./weaviate)

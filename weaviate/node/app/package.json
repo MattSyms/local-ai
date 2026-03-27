@@ -1,0 +1,28 @@
+{
+  "name": "app",
+  "private": true,
+  "scripts": {
+    "start": "vite-node src",
+    "update": "ncu",
+    "compile": "tsc",
+    "lint": "eslint",
+    "build": "vite build"
+  },
+  "type": "module",
+  "engines": {
+    "node": "^22"
+  },
+  "dependencies": {
+    "apeframework": "v0.0.0-dev.45",
+    "weaviate-client": "^3.12"
+  },
+  "devDependencies": {
+    "@apeframework/eslint": "v0.0.0-dev.48",
+    "@types/node": "^25.3",
+    "eslint": "^9.39",
+    "npm-check-updates": "^19.6",
+    "typescript": "^5.9",
+    "vite": "^7.3",
+    "vite-node": "^5.3"
+  }
+}
