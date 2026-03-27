@@ -65,7 +65,7 @@ const resolveIndexImports: Plugin = {
 
 const config = defineConfig({
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.ts', '.js'],
     alias: {
       ...getAliases(),
       ...getFailedResolutionAliases(),

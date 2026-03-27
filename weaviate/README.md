@@ -24,3 +24,15 @@ Get a shell from the App container:
 ```
 docker compose exec app bash
 ```
+
+Install dependencies:
+
+```
+yarn
+```
+
+Start the app:
+
+```
+yarn start
+```

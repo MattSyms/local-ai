@@ -4,7 +4,10 @@ import { env } from 'env'
 
 const config = getConfig({
   properties: {
-    foo: {
+    weaviateHost: {
+      parser: parseString,
+    },
+    ollamaUrl: {
       parser: parseString,
     },
   },
