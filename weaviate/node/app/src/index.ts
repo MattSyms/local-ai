@@ -50,3 +50,5 @@ for (const object of response.objects) {
 }
 
 await client.close()
+
+process.exit(0)
