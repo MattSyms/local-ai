@@ -7,7 +7,7 @@ services:
     ports:
       - ${NODE_PORT:-3000}:3000
     volumes:
-      - ./node/app:/home/node/app
+      - ./app:/home/node/app
     environment:
       WEAVIATE_HOST: weaviate
       OLLAMA_URL: http://ollama:${OLLAMA_PORT-11434}
