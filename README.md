@@ -9,5 +9,6 @@ Container Toolkit: https://docs.nvidia.com/datacenter/cloud-native/container-too
 ## Docker Stacks
 
 - [Ollama](./ollama)
+- [OpenHands](./openhands)
 - [Stable Diffusion](./stable-diffusion)
 - [Weaviate](./weaviate)

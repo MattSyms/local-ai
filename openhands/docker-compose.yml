@@ -1,0 +1,32 @@
+services:
+  openhands:
+    image: ghcr.io/all-hands-ai/openhands
+    ports:
+      - ${OPENHANDS_PORT-3000}:3000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${OPENHANDS_WORKSPACE-./workspace}:/opt/workspace_base
+
+  vllm:
+    image: vllm/vllm-openai
+    command: >
+      --model Qwen/Qwen2.5-Coder-32B-Instruct-AWQ
+      --max-model-len 32768
+      --gpu-memory-utilization 0.85
+      --max-num-seqs 2
+      --enforce-eager
+      --disable-log-requests
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    ports:
+      - ${VLLM_PORT-8000}:8000
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+    shm_size: '10gb'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              device_ids: ['0']
