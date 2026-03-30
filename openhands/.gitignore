@@ -1,4 +1,4 @@
-.env
+/.env
 /settings/*
 !/settings/.gitkeep
 /workspace/*

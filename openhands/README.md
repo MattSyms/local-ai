@@ -4,6 +4,7 @@
 | ---------- | ----------------- | ----------------------------------------- |
 | OpenHands  | `openhands:3000`  | [localhost:3000](http://localhost:3000)   |
 | vLLM       | `vllm:8000`       | [localhost:8000](http://localhost:8000)   |
+| Langfuse   | `langfuse:3000`   | [localhost:3001](http://localhost:3001)   |
 
 Models: https://huggingface.co/models
 
