@@ -19,8 +19,8 @@ services:
       LLM_MODEL: openai/Qwen/Qwen2.5-Coder-32B-Instruct-AWQ
       LLM_API_KEY: key
       LANGFUSE_HOST: http://langfuse:3000
-      LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY}
-      LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY}
+      LANGFUSE_PUBLIC_KEY: pk-lf-key
+      LANGFUSE_SECRET_KEY: sk-lf-key
 
   vllm:
     image: vllm/vllm-openai:v0.6.3.post1
