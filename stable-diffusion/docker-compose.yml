@@ -6,6 +6,7 @@ services:
       - ${WEBUI_PORT-7860}:7860
     volumes:
       - ./webui/data:/home/ubuntu/stable-diffusion-webui/data
+    shm_size: '16gb'
     deploy:
       resources:
         reservations:

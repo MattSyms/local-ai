@@ -43,7 +43,7 @@ services:
       - ./models:/root/.cache/huggingface
     environment:
       CUDA_VISIBLE_DEVICES: 0
-    shm_size: '10gb'
+    shm_size: '16gb'
     deploy:
       resources:
         reservations:

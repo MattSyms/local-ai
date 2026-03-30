@@ -1,0 +1,21 @@
+services:
+  comfyui:
+    image: ghcr.io/comfy-org/comfyui
+    ports:
+      - ${COMFYUI_PORT-8188}:8188
+    volumes:
+      - ./models:/app/models
+      - ./input:/app/input
+      - ./output:/app/output
+      - ./custom_nodes:/app/custom_nodes
+      - ./user_data:/app/user
+    environment:
+      CLI_ARGS: --listen 0.0.0.0 --enable-manager --preview-method auto
+    shm_size: '16gb'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              device_ids: ['0']
