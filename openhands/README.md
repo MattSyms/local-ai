@@ -7,6 +7,12 @@
 
 Models: https://huggingface.co/models
 
+Create and customize `.env` file:
+
+```
+cp .env.sample .env
+```
+
 Deploy stack:
 
 ```
