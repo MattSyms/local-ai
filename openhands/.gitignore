@@ -1,3 +1,5 @@
 .env
+/settings/*
+!/settings/.gitkeep
 /workspace/*
 !/workspace/.gitkeep

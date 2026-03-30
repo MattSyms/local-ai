@@ -1,12 +1,14 @@
 services:
   openhands:
     image: ghcr.io/all-hands-ai/openhands
+    extra_hosts:
+      - host.docker.internal:host-gateway
     ports:
       - ${OPENHANDS_PORT-3000}:3000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
-      - openhands-data:/.openhands
+      - ./settings:/.openhands
       - ${OPENHANDS_WORKSPACE-./workspace}:/opt/workspace_base
     environment:
       DOCKER_HOST: unix:///var/run/docker.sock
@@ -23,7 +25,7 @@ services:
       --enforce-eager
       --uvicorn-log-level warning
     volumes:
-      - ~/.cache/huggingface:/root/.cache/huggingface
+      - vllm-data:/root/.cache/huggingface
     ports:
       - ${VLLM_PORT-8000}:8000
     environment:
@@ -38,4 +40,4 @@ services:
               device_ids: ['0']
 
 volumes:
-  openhands-data:
+  vllm-data:
