@@ -10,13 +10,7 @@ Models: https://huggingface.co/models
 Pull runtime image:
 
 ```
-docker pull ghcr.io/all-hands-ai/runtime:0.18.0-nikolaik
-```
-
-Create and customize `.env` file:
-
-```
-cp .env.sample .env
+docker pull ghcr.io/all-hands-ai/runtime:main-nikolaik
 ```
 
 Deploy stack:
@@ -25,12 +19,6 @@ Deploy stack:
 docker compose up -d
 ```
 
-Create LLM (Advanced):
-
-- Custom Model: openai/Qwen/Qwen2.5-Coder-32B-Instruct-AWQ
-- Base URL: http://vllm:8000/v1
-- API Key: key
-
 ## TODO
 
-- check openhands extra host
+- vLLM v0.6.4 or latest

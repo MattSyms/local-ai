@@ -1,34 +1,43 @@
 services:
   openhands:
     image: ghcr.io/all-hands-ai/openhands
+    networks:
+      - openhands
     extra_hosts:
       - host.docker.internal:host-gateway
     ports:
       - ${OPENHANDS_PORT-3000}:3000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/bin/docker:/usr/bin/docker
       - ./settings:/.openhands
       - ${OPENHANDS_WORKSPACE-./workspace}:/opt/workspace_base
     environment:
-      DOCKER_HOST: unix:///var/run/docker.sock
-      SANDBOX_USER_ID: ${UID}
-      SANDBOX_RUNTIME_CONTAINER_IMAGE: ghcr.io/all-hands-ai/runtime:0.18.0-nikolaik
+      SANDBOX_USER_ID: ${UID-1000}
+      SANDBOX_NETWORK: openhands
+      SANDBOX_RUNTIME_CONTAINER_IMAGE: ghcr.io/all-hands-ai/runtime:main-nikolaik
+      LLM_BASE_URL: http://vllm:${VLLM_PORT-8000}/v1
+      LLM_MODEL: openai/Qwen/Qwen2.5-Coder-32B-Instruct-AWQ
+      LLM_API_KEY: key
 
   vllm:
     image: vllm/vllm-openai:v0.6.3.post1
     command: >
       --model Qwen/Qwen2.5-Coder-32B-Instruct-AWQ
-      --max-model-len 32768
+      --device cuda
+      --dtype bfloat16
       --kv-cache-dtype fp8
-      --gpu-memory-utilization 0.90
+      --gpu-memory-utilization 0.95
+      --max-model-len 16384
       --max-num-seqs 1
       --enforce-eager
+      --enable-prefix-caching
       --uvicorn-log-level warning
-    volumes:
-      - vllm-data:/root/.cache/huggingface
+    networks:
+      - openhands
     ports:
       - ${VLLM_PORT-8000}:8000
+    volumes:
+      - vllm-data:/root/.cache/huggingface
     environment:
       CUDA_VISIBLE_DEVICES: 0
     shm_size: '10gb'
@@ -39,6 +48,10 @@ services:
             - driver: nvidia
               capabilities: [gpu]
               device_ids: ['0']
+
+networks:
+  openhands:
+    driver: bridge
 
 volumes:
   vllm-data:
