@@ -22,7 +22,7 @@ services:
       PHOENIX_PROJECT_NAME: OpenHands
 
   vllm:
-    image: vllm/vllm-openai:v0.18.0
+    image: vllm/vllm-openai
     command: >
       Qwen/Qwen2.5-Coder-32B-Instruct-AWQ
       --kv-cache-dtype fp8
