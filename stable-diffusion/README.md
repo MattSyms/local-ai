@@ -15,4 +15,4 @@ Deploy stack:
 docker compose up -d
 ```
 
-Models directory: `webui/data/models/Stable-diffusion`
+Models directory: `data/models/Stable-diffusion`
