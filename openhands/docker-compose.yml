@@ -6,7 +6,7 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     ports:
-      - ${OPENHANDS_PORT-3000}:3000
+      - ${OPENHANDS_PORT-5000}:3000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./settings:/.openhands
@@ -15,12 +15,11 @@ services:
       SANDBOX_USER_ID: ${UID-1000}
       SANDBOX_NETWORK: openhands
       SANDBOX_RUNTIME_CONTAINER_IMAGE: ghcr.io/all-hands-ai/runtime:main-nikolaik
-      LLM_BASE_URL: http://vllm:${VLLM_PORT-8000}/v1
+      LLM_BASE_URL: http://vllm:8000/v1
       LLM_MODEL: openai/Qwen/Qwen2.5-Coder-32B-Instruct-AWQ
       LLM_API_KEY: key
-      LANGFUSE_HOST: http://langfuse:3000
-      LANGFUSE_PUBLIC_KEY: pk-lf-key
-      LANGFUSE_SECRET_KEY: sk-lf-key
+      OPENINFERENCE_OTLP_ENDPOINT: http://phoenix:4317
+      PHOENIX_PROJECT_NAME: OpenHands
 
   vllm:
     image: vllm/vllm-openai:v0.18.0
@@ -28,11 +27,11 @@ services:
       Qwen/Qwen2.5-Coder-32B-Instruct-AWQ
       --kv-cache-dtype fp8
       --max-model-len 16384
-      --max-num-seqs 4
+      --max-num-seqs 2
       --enable-prefix-caching
       --enable-chunked-prefill
       --trust-remote-code
-      --gpu-memory-utilization 0.90
+      --gpu-memory-utilization 0.95
       --uvicorn-log-level warning
     networks:
       - openhands
@@ -51,5 +50,22 @@ services:
               capabilities: [gpu]
               device_ids: ['0']
 
+  phoenix:
+    image: arizephoenix/phoenix
+    networks:
+      - openhands
+    ports:
+      - ${PHOENIX_PORT-5001}:6006
+      - ${PHOENIX_OTLP_PORT-4317}:4317
+    volumes:
+      - phoenix-data:/data
+    environment:
+      PHOENIX_HOST: 0.0.0.0
+      PHOENIX_PORT: 6006
+      PHOENIX_WORKING_DIR: /data
+
 networks:
   openhands:
+
+volumes:
+  phoenix-data:

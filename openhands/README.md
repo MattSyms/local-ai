@@ -1,10 +1,11 @@
 # OpenHands
 
-| Service    | Docker URL        | Local URL                                 |
-| ---------- | ----------------- | ----------------------------------------- |
-| OpenHands  | `openhands:3000`  | [localhost:3000](http://localhost:3000)   |
-| vLLM       | `vllm:8000`       | [localhost:8000](http://localhost:8000)   |
-| Langfuse   | `langfuse:3000`   | [localhost:3001](http://localhost:3001)   |
+| Service      | Docker URL       | Local URL                               |
+| ------------ | ---------------- | --------------------------------------- |
+| OpenHands    | `openhands:3000` | [localhost:5000](http://localhost:5000) |
+| Phoenix      | `phoenix:6006`   | [localhost:5001](http://localhost:5001) |
+| vLLM         | `vllm:8000`      | `localhost:8000`                        |
+| Phoenix OTLP | `phoenix:4317`   | `localhost:4317`                        |
 
 Models: https://huggingface.co/models
 
@@ -19,7 +20,3 @@ Deploy stack:
 ```
 docker compose up -d
 ```
-
-## TODO
-
-- vLLM v0.6.4 or latest
