@@ -35,14 +35,14 @@ services:
       - ${OLLAMA_PORT-11434}:11434
     volumes:
       - ollama-data:/root/.ollama
-    shm_size: '16gb'
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              capabilities: [gpu]
-              device_ids: ['0']
+    # shm_size: '16gb'
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           capabilities: [gpu]
+    #           device_ids: ['0']
 
 volumes:
   weaviate-data:

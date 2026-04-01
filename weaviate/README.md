@@ -31,8 +31,9 @@ Install dependencies:
 yarn
 ```
 
-Start the app:
+Run the app:
 
 ```
-yarn start
+node src/demo1.js
+node src/demo2.js
 ```

@@ -1,4 +1,4 @@
-import { config } from 'config'
+import { config } from './config.js'
 import weaviate, { vectors } from 'weaviate-client'
 
 const client = await weaviate.connectToLocal({
@@ -20,39 +20,26 @@ const incidents = client.collections.get('Incident')
 
 await incidents.data.insertMany([
   {
-    summary:
-      'Core switch SFP module failure leading to intermittent packet loss.',
-    errorCode:
-      'ETH_ERR_042',
-    deviceType:
-      'Cisco Nexus',
-    resolution:
-      'Replaced SFP module in port Gi0/1 and cleaned fiber connectors.',
+    summary: 'Core switch SFP module failure leading to intermittent packet loss.',
+    errorCode: 'ETH_ERR_042',
+    deviceType: 'Cisco Nexus',
+    resolution: 'Replaced SFP module in port Gi0/1 and cleaned fiber connectors.',
   },
   {
-    summary:
-      'BGP session flap caused by MTU mismatch on the peer link.',
-    errorCode:
-      'BGP_ADJ_DOWN',
-    deviceType:
-      'Juniper MX',
-    resolution:
-      'Adjusted MTU to 9100 on both sides of the interface.',
+    summary: 'BGP session flap caused by MTU mismatch on the peer link.',
+    errorCode: 'BGP_ADJ_DOWN',
+    deviceType: 'Juniper MX',
+    resolution: 'Adjusted MTU to 9100 on both sides of the interface.',
   },
   {
-    summary:
-      'High CPU utilization due to a localized broadcast storm.',
-    errorCode:
-      'SYS_CPU_ALARM',
-    deviceType:
-      'Arista 7050',
-    resolution:
-      'Identified looping bridge; enabled storm control on VLAN 10.',
+    summary: 'High CPU utilization due to a localized broadcast storm.',
+    errorCode: 'SYS_CPU_ALARM',
+    deviceType: 'Arista 7050',
+    resolution: 'Identified looping bridge; enabled storm control on VLAN 10.',
   },
 ])
 
-const event = 'My backbone router is dropping BGP connections, \
-might be a packet size issue or something.'
+const event = 'My backbone router is dropping BGP connections, might be a packet size issue or something.'
 
 const response = await incidents.query.nearText(
   event,
