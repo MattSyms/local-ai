@@ -23,6 +23,6 @@ docker compose up -d
 
 Create LLM (Advanced):
 
-- Base URL: `http://vllm:8000/v1`
-- Custom Model: `openai/Qwen/Qwen2.5-Coder-32B-Instruct-AWQ`
-- API Key: `key`
+- Base URL: http://vllm:8000/v1
+- Custom Model: openai/Qwen/Qwen2.5-Coder-32B-Instruct-AWQ
+- API Key: key

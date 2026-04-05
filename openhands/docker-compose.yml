@@ -10,14 +10,12 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./settings:/.openhands
-      - ${OPENHANDS_WORKSPACE-./workspace}:/opt/workspace_base
+      - ${OPENHANDS_WORKSPACE:-$PWD/workspace}:/opt/workspace_base
     environment:
+      WORKSPACE_MOUNT_PATH: ${OPENHANDS_WORKSPACE:-$PWD/workspace}
       SANDBOX_USER_ID: ${UID-1000}
       SANDBOX_NETWORK: openhands
       SANDBOX_RUNTIME_CONTAINER_IMAGE: ghcr.io/all-hands-ai/runtime:main-nikolaik
-      LLM_BASE_URL: http://vllm:8000/v1
-      LLM_MODEL: openai/Qwen/Qwen2.5-Coder-32B-Instruct-AWQ
-      LLM_API_KEY: key
       OPENINFERENCE_OTLP_ENDPOINT: http://phoenix:4317
       PHOENIX_PROJECT_NAME: OpenHands
 
